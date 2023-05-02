@@ -1,0 +1,33 @@
+@import '../../sass/partials/colors';
+
+.navbar{
+  background-color: transparent;
+
+  &_link{
+    display: inline-block;
+    height: 100%;
+  }
+
+  &_img{
+    width: 150px;
+    height: 70px;
+  }
+
+  &_nav{
+    color: $primary-color;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 5px;
+
+    &:hover{
+      background-color: $secondary-color;
+      color: $color-black;
+    }
+  }
+
+}
+
+.active{
+  background-color: $primary-color;
+  color: $color-black;
+}

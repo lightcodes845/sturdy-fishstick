@@ -1,4 +1,4 @@
-//@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 
 *,
 *::after,
@@ -11,12 +11,18 @@
 html {
   // font-size: 62.5%;
   height: 100%;
+  overflow-x: hidden
 }
 
 body {
-  //font-family: "Nunito", sans-serif !important;
+  font-family: "Nunito", sans-serif !important;
   height: 100%;
   overflow-x: hidden;
+}
+
+a{
+  text-decoration: none !important;
+  color: inherit;
 }
 
 // customize bootstrap variables here

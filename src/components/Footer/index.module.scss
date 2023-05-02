@@ -1,0 +1,14 @@
+@import '../../sass/partials/colors';
+@import "../../sass/partials/mixins";
+
+#footer{
+  width: 100%;
+  background-color: rgb(219, 219, 219);
+  height: 70px;
+  color: rgb(4, 4, 4);
+  text-align: center;
+  padding: 10px;
+  @include respondMax(md) {
+    margin-left: 0;
+  }
+}

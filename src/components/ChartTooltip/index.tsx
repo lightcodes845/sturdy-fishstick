@@ -15,8 +15,6 @@ type Props = {
 }
 
 const ChartTooltip: React.FC<Props> = ({serieId, data, x, y}) => {
-    console.log("x: ", x);
-    console.log("y: ", y);
     return (
         // <TooltipWrapper anchor="center" position={[0, 0]}>
         <div className={`${classes.tooltip} card`}>

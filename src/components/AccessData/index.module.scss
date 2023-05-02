@@ -1,0 +1,47 @@
+@import '../../sass/partials/colors';
+@import "../../sass/partials/mixins";
+
+.data_section{
+  padding: 5rem 0;
+  background-color: #e7f2fd;
+  &_header{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    @include respondMax(sm){
+      font-size: 2rem;
+    }
+  }
+
+  &_sub_header{
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  &_card{
+    border: none;
+    height: 450px;
+
+    &_icon{
+      transform: scale(2);
+      color: $primary-color;
+    }
+
+    &_text{
+      text-align: justify;
+    }
+
+    &_link{
+      color: $secondary-color;
+      font-size: 1.1rem;
+      padding: 5px;
+      &:hover{
+        //background-color: $primary-color;
+        color: $color-black;
+      }
+    }
+
+  }
+
+
+}

@@ -1,0 +1,102 @@
+//@import "../../sass/partials/mixins";
+//@include respondMax(phone-land){
+//  font-size: 1.8rem;
+//}
+
+@mixin specialMin($special) {
+  @media only screen and (min-width: $special) {
+    @content;
+  }
+}
+
+@mixin heightMax($special) {
+  @media only screen and (max-height: $special) {
+    @content;
+  }
+}
+
+@mixin specialMax($special) {
+  @media only screen and (max-width: $special) {
+    @content;
+  }
+}
+
+@mixin respondMin($breakpoint) {
+  @if $breakpoint == phone-port {
+    @media only screen and (min-width: 375px) {
+      @content;
+    }
+  }
+  @if $breakpoint == phone-land {
+    @media only screen and (min-width: 481px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == sm {
+    @media only screen and (min-width: 576px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == md {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media only screen and (min-width: 992px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xxl {
+    @media only screen and (min-width: 1400px) {
+      @content;
+    }
+  }
+}
+
+@mixin respondMax($breakpoint) {
+  @if $breakpoint == phone-port {
+    @media only screen and (max-width: 375px) {
+      @content;
+    }
+  }
+  @if $breakpoint == phone-land {
+    @media only screen and (max-width: 481px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == sm {
+    @media only screen and (max-width: 576px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == md {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media only screen and (max-width: 992px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media only screen and (max-width: 1200px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xxl {
+    @media only screen and (max-width: 1400px) {
+      @content;
+    }
+  }
+}
