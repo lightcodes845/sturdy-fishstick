@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/sturdy-fishstick/static/css/main.197030e6.css",
+    "main.js": "/sturdy-fishstick/static/js/main.68b38d6f.js",
+    "static/js/787.c8e4ee5d.chunk.js": "/sturdy-fishstick/static/js/787.c8e4ee5d.chunk.js",
+    "static/media/embryo_1_1.webp": "/sturdy-fishstick/static/media/embryo_1_1.093e7b97d0d821c497da.webp",
+    "index.html": "/sturdy-fishstick/index.html",
+    "main.197030e6.css.map": "/sturdy-fishstick/static/css/main.197030e6.css.map",
+    "main.68b38d6f.js.map": "/sturdy-fishstick/static/js/main.68b38d6f.js.map",
+    "787.c8e4ee5d.chunk.js.map": "/sturdy-fishstick/static/js/787.c8e4ee5d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.197030e6.css",
+    "static/js/main.68b38d6f.js"
+  ]
+}
