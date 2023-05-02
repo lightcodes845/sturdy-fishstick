@@ -49,7 +49,7 @@ const AccessData: React.FC<Props> = (props: Props) => {
                         href="https://github.com/mpi2/EBI02126-web-developer/blob/main/data/embryo_imaging"
                         target="_blank"
                         rel="noreferrer"
-                        className={classes.data_section_card_link}
+                        className={`${classes.data_section_card_link}`}
                       >
                         View More <ImArrowUpRight2 />
                       </a>

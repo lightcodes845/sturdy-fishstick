@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import classes from "./index.module.scss";
@@ -6,29 +6,13 @@ import classes from "./index.module.scss";
 type Props = {};
 
 const Header: React.FC<Props> = (props: Props) => {
-  const [colorChange, setColorchange] = useState(false);
-  const changeNavbarColor = () => {
-    if (window.scrollY >= 80) {
-      setColorchange(true);
-    } else {
-      setColorchange(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", changeNavbarColor);
-
-    return () => {
-      window.removeEventListener("scroll", changeNavbarColor);
-    };
-  }, []);
 
   return (
     <Navbar
       fixed="top"
       bg="light"
       expand="lg"
-      style={{ boxShadow: colorChange ? "0 3px 5px rgba(0,0,0,0.5)" : "" }}
+      id={"navbarId"}
       className={classes.navbar}
     >
       <Container>

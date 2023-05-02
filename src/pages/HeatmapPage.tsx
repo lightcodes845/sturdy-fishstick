@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { PlotData, SelectData } from "../dataTypes";
 import Heatmap from "../components/Heatmap";
 import DataPagination from "../components/DataPagination";
@@ -18,9 +18,17 @@ function HeatmapPage() {
   >(null);
   const [selectedGenes, setSelectedGenes] = useState<SelectData[] | null>(null);
   const [geneRange, setGeneRange] = useState<number>(0);
+  const [geneRangeFilterLevel, setGeneFilterLevel] = useState<PlotData[]>([]);
+  const [geneRangePage, setGeneRangePage] = useState<number>(1);
+  const [geneRangePerPage, setGeneRangePerPage] = useState<number>(25);
+  const geneRangeRef = useRef<number>(0);
 
   const paginate = (pageNumber: number) => {
     setPage(pageNumber);
+  };
+
+  const paginateGeneRange = (pageNumber: number) => {
+    setGeneRangePage(pageNumber);
   };
 
   useEffect(() => {
@@ -42,7 +50,15 @@ function HeatmapPage() {
       setPlotData(
         selectedData.slice((page - 1) * elementsPerPage, page * elementsPerPage)
       );
-    } else if (geneRange > 0) {
+    } else {
+      setPlotData(
+        fullData.slice((page - 1) * elementsPerPage, page * elementsPerPage)
+      );
+    }
+  }, [elementsPerPage, page, fullData, selectedPhenotypes, selectedGenes]);
+
+  useEffect(() => {
+    if (geneRange > 0) {
       const filterLevel = Math.round(
         (geneRange / 100) * rangeFilterData.length
       );
@@ -51,24 +67,27 @@ function HeatmapPage() {
         .map((d) => d.id);
       const selectedData = fullData.filter((d) => ids.includes(d.id));
       selectedData.sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
-      setPlotData(selectedData);
-    } else {
+      if(geneRangeRef.current > geneRange) {
+        setGeneRangePage(1);
+      }
+      setGeneFilterLevel(selectedData);
       setPlotData(
-        fullData.slice((page - 1) * elementsPerPage, page * elementsPerPage)
+        selectedData.slice(
+          (geneRangePage - 1) * geneRangePerPage,
+          geneRangePage * geneRangePerPage
+        )
+      );
+      geneRangeRef.current = geneRange;
+    }else {
+      setPlotData(
+          fullData.slice((page - 1) * elementsPerPage, page * elementsPerPage)
       );
     }
-  }, [
-    elementsPerPage,
-    page,
-    fullData,
-    selectedPhenotypes,
-    selectedGenes,
-    geneRange,
-    rangeFilterData,
-  ]);
+  //  eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [geneRange, rangeFilterData, geneRangePage, geneRangePerPage, fullData]);
 
   return (
-    <div className={"container w-100 h-100"} style={{ marginTop: "110px" }}>
+    <div className={"container w-100 h-100"} style={{ marginTop: "110px", minHeight: "40rem"  }}>
       <h1 className="text-center my-3">IMPC Heatmap</h1>
       {loading ? (
         <div className="d-flex justify-content-center w-100">
@@ -83,6 +102,7 @@ function HeatmapPage() {
               geneRange > 0
             }
             setSelectedGenes={setSelectedGenes}
+            selectedGenes={selectedGenes}
             disablePhenotypeSelect={
               !!(selectedGenes && selectedGenes.length > 0) || geneRange > 0
             }
@@ -90,6 +110,7 @@ function HeatmapPage() {
             setSelectedPhenotypes={setSelectedPhenotypes}
             setGeneRange={setGeneRange}
             geneRange={geneRange}
+            selectedPhenotypes={selectedPhenotypes}
             disableGeneRange={
               !!(selectedGenes && selectedGenes.length > 0) ||
               !!(selectedPhenotypes && selectedPhenotypes.length > 0)
@@ -124,6 +145,33 @@ function HeatmapPage() {
                   />
                 </div>
               )}
+          {/*  For Gene Range */}
+          {geneRange > 0 ? (
+            <div className="d-flex align-items-center justify-content-center">
+              <div className="me-3">
+                <label htmlFor="geneRangePerPage">Showing&nbsp;&nbsp;</label>
+                <select
+                  name="geneRangePerPage"
+                  id="geneRangePerPage"
+                  onChange={(e) => {
+                    setGeneRangePerPage(parseInt(e.target.value));
+                    paginateGeneRange(1);
+                  }}
+                >
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>{" "}
+                genes per page
+              </div>
+              <DataPagination
+                elementsPerPage={geneRangePerPage}
+                totalElements={geneRangeFilterLevel.length}
+                activePage={geneRangePage}
+                paginate={paginateGeneRange}
+              />
+            </div>
+          ) : null}
         </>
       )}
     </div>

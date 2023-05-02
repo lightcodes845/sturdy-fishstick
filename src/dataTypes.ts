@@ -16,6 +16,7 @@ export type PlotData = {
         x: string,
         y: number,
         marker_accession_id: string,
+        top_level_mp_term_id: string,
         procedures: string[];
         phenotype_terms: { mp_term_id: string; mp_term_name: string }[];
     }[]

@@ -13,7 +13,7 @@ const IntroSection: React.FC<Props> = () => {
             <div className="col-12 col-lg-6">
               <div className="d-flex align-items-center justify-content-center">
                 <figure className={classes.intro_section_figure}>
-                  <img className={classes.intro_section_image} src="/images/embryo_2.png" alt="Embryo" />
+                  <img className={classes.intro_section_image} src="/images/embryo_2.webp" alt="Embryo" />
                   <figcaption className="text-center">Image of a Mouse Embryo after 3 weeks</figcaption>
                 </figure>
               </div>

@@ -9,10 +9,13 @@
   //height: calc(100vh - 80px);
   &_bg{
     height: 100%;
-    background-image: url('../../images/embryo_1_1.png');
+    background-image: url('../../images/embryo_1_1.webp');
     background-position: 85% 1%;
     @include respondMax(lg){
       background-position: 50% 1%;
+    }
+    @include respondMin(xxl){
+      background-position: 75% 1%;
     }
     background-repeat: no-repeat;
     background-size: contain;

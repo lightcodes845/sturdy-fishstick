@@ -1,0 +1,20 @@
+@import "../partials/colors";
+.search_page{
+  width: 100%;
+  min-height: 90vh;
+  margin-top: 95px;
+  padding: 1rem 0;
+
+  &_button{
+    background-color: $primary-color;
+    border: none;
+  }
+
+  &_top_term{
+    color: $secondary-color;
+  }
+
+  &_phenotype_count{
+    color: $primary-color;
+  }
+}

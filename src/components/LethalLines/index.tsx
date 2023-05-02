@@ -56,7 +56,7 @@ const LethalLines: React.FC<Props> = (props: Props) => {
                 <figure className={classes.lethal_section_figure}>
                   <img
                     className={classes.lethal_section_image}
-                    src="/images/embryo_3.png"
+                    src="/images/embryo_3.webp"
                     alt="Embryo"
                   />
                   <figcaption className="text-center">

@@ -3,9 +3,9 @@
 
 #footer{
   width: 100%;
-  background-color: rgb(219, 219, 219);
+  background-color: $color-black;
   height: 70px;
-  color: rgb(4, 4, 4);
+  color: $color-white;
   text-align: center;
   padding: 10px;
   @include respondMax(md) {
