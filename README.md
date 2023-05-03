@@ -9,7 +9,7 @@ This project can be viewed on your online [here](http://aws-impc-project.s3-webs
 * Run `yarn start` to start the project
 * Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Libraries used in this project and why I chose them
+## Libraries used in this project
 * [React](https://reactjs.org/) - React is a popular library for building user interfaces.
 * [React Router](https://reactrouter.com/) - React Router is a popular library for routing in React and I used it to navigate between the different pages in the application.
 * [React Bootstrap](https://react-bootstrap.github.io/) - React Bootstrap because it is a popular library for styling React components.
@@ -21,7 +21,7 @@ This project can be viewed on your online [here](http://aws-impc-project.s3-webs
 ## Project structure
 The application consists of 3 pages:
 * Landing page - This page displays the introduction text and images provided for the exercise.
-* Heatmap page - This page displays the plot with the filter controls.
+* Heatmap page - This page displays the heatmap plot with the filter controls.
   * On page load, the plot displays the data for the first 25 genes and the user can use the pagination controls below the plot to navigate to all 1000 genes.
   * The user can use the filter controls to filter the data by gene, top level phenotype term and top gene range. The top level phenotype term and gene range are paginated.
   * All filters are mutually exclusive.
@@ -34,6 +34,6 @@ on the plot was getting a bit long and couldn't show all information for some ge
 * I decided to use Context API to manage the data of the application as it is now needed in the heatmap page and the search page.
 This will also prevent re-fetching of the data when the user navigates between pages.
 * I cached the dataset in IndexedDB to prevent re-fetching of the data when the user refreshes the page. I would not usually do this
-in production but rather prefer using libraries like useSWR to cache the data. I also expect the data to have been paginated
+in production but rather prefer using libraries like useSWR, service workers or others that implements state-of-the-art caching strategies to cache the data. I also expect the data to have been paginated
 from the backend so that the user does not have to fetch all 1000 genes at once. Given that the data is not paginated and does not change, I decided to cache it in IndexedDB.
 * I decided to paginate the data viewed on the plot because the plot was getting a bit crowded with all 1000 genes. I also decided to paginate the top level phenotype term and gene range filters because they are quite long and would not fit on the screen.

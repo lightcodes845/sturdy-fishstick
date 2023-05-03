@@ -4,7 +4,7 @@
 .hero{
   width: 100%;
   height: 90vh;
-  padding-top: 3rem;
+  padding-top: 1rem;
 
   &_text{
     height: 100%;
@@ -80,12 +80,12 @@
       //height: 40vh;
       //width: 600px;
       width: 100%;
-      height: 500px;
+      height: 36.25rem;
       display: flex;
       justify-content: flex-end;
       @include respondMax(lg){
         //width: 550px;
-        height: 400px;
+        height: 31.25rem;
       }
       img{
         height: 100%;
