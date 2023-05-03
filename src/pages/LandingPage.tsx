@@ -8,7 +8,7 @@ type Props = {}
 
 const LandingPage: React.FC<Props> = (props: Props) => {
     return (
-        <div>
+        <div style={{marginTop: "95px"}}>
             <Hero />
             <IntroSection />
             <AccessData />

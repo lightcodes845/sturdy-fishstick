@@ -4,23 +4,7 @@
 .hero{
   width: 100%;
   height: 90vh;
-  margin-top: 95px;
-  padding: 3rem 0;
-  //height: calc(100vh - 80px);
-  &_bg{
-    height: 100%;
-    background-image: url('../../images/embryo_1_1.webp');
-    background-position: 85% 1%;
-    @include respondMax(lg){
-      background-position: 50% 1%;
-    }
-    @include respondMin(xxl){
-      background-position: 75% 1%;
-    }
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: relative;
-  }
+  padding-top: 3rem;
 
   &_text{
     height: 100%;
@@ -29,16 +13,7 @@
       height: 100%;
       display: flex;
       align-items: center;
-      //transform: translate(-50%, -50%);
       color: $color-black;
-      //text-align: center;
-      //font-weight: 700;
-      //text-shadow: 2px 2px 4px $color-black;
-      @include respondMax(xl){
-        //top: 55%;
-        //text-shadow: 2px 2px 4px $color-black;
-        //color: $color-white;
-      }
       @include respondMax(lg){
         justify-content: center;
       }
@@ -49,59 +24,74 @@
       }
 
       h1{
-        font-size: 4rem;
+        font-size: 3.5rem;
         color: $secondary-color;
         font-weight: bold;
         background: linear-gradient(to left, $primary-color, $secondary-color);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         @include respondMax(xl){
-          //text-shadow: 2px 2px 4px $color-black;
-          //color: $color-white;
           font-size: 3rem;
         }
         @include respondMax(lg){
-          background: unset;
-          -webkit-background-clip: unset;
-          -webkit-text-fill-color: unset;
+          font-size: 2.2rem;
+        }
+        @include respondMax(md){
           text-align: center;
-          text-shadow: 2px 2px 4px $color-black;
-          color: $color-white;
+          font-size: 2.6rem;
         }
         @include respondMax(sm){
-          background: unset;
-          -webkit-background-clip: unset;
-          -webkit-text-fill-color: unset;
-          font-size: 2.6rem;
+            font-size: 2.2rem;
         }
 
         @include respondMax(phone-land){
-          background: unset;
-          -webkit-background-clip: unset;
-          -webkit-text-fill-color: unset;
-          font-size: 2rem;
+          font-size: 1.8rem;
         }
 
       }
       p{
         font-size: 1.7rem;
-        @include respondMax(xl){
-          //text-shadow: 2px 2px 4px $color-black;
-          //color: $color-white;
-        }
+
         @include respondMax(lg){
-          text-align: center;
-          text-shadow: 2px 2px 4px $color-black;
-          color: $color-white;
-        }
-        @include respondMax(sm){
           font-size: 1.4rem;
         }
-        @include respondMax(phone-land){
+
+        @include respondMax(md){
+          text-align: center;
           font-size: 1.2rem;
+        }
+        @include respondMax(sm){
+          font-size: 1rem;
+        }
+        @include respondMax(phone-land){
+          font-size: 0.9rem;
         }
       }
     }
 
+  }
+
+  &_image{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    &_content{
+      //height: 40vh;
+      //width: 600px;
+      width: 100%;
+      height: 500px;
+      display: flex;
+      justify-content: flex-end;
+      @include respondMax(lg){
+        //width: 550px;
+        height: 400px;
+      }
+      img{
+        height: 100%;
+        object-fit: contain;
+        object-position: 50% 50%;
+      }
+    }
   }
 }

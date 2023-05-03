@@ -60,7 +60,7 @@ const LethalLines: React.FC<Props> = (props: Props) => {
                     alt="Embryo"
                   />
                   <figcaption className="text-center">
-                    Image of a Mouse Embryo after 1 week
+                    Image of a Mouse Embryo after 4 week
                   </figcaption>
                 </figure>
               </div>

@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# EBI02126 – Technical task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project can be viewed on your online [here](http://aws-impc-project.s3-website.eu-central-1.amazonaws.com).
 
-## Available Scripts
+## Running the project locally
+* Clone the project to your local machine or download the zip file.
+* Navigate to the project directory
+* Run `yarn install` to install the dependencies
+* Run `yarn start` to start the project
+* Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-In the project directory, you can run:
+## Libraries used in this project and why I chose them
+* [React](https://reactjs.org/) - React is a popular library for building user interfaces.
+* [React Router](https://reactrouter.com/) - React Router is a popular library for routing in React and I used it to navigate between the different pages in the application.
+* [React Bootstrap](https://react-bootstrap.github.io/) - React Bootstrap because it is a popular library for styling React components.
+* [Bootstrap](https://getbootstrap.com/) - Bootstrap because it is a popular library for styling web pages.
+* [Typescript](https://www.typescriptlang.org/) - Typescript is a popular language for writing JavaScript, and it helps to write error free Javascript.
+* [Nivo](https://nivo.rocks/) - Nivo Charts is a popular library for creating charts and has charts for the kind of plot we want to display.
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project structure
+The application consists of 3 pages:
+* Landing page - This page displays the introduction text and images provided for the exercise.
+* Heatmap page - This page displays the plot with the filter controls.
+  * On page load, the plot displays the data for the first 25 genes and the user can use the pagination controls below the plot to navigate to all 1000 genes.
+  * The user can use the filter controls to filter the data by gene, top level phenotype term and top gene range. The top level phenotype term and gene range are paginated.
+  * All filters are mutually exclusive.
+* Search page - This page allows users to search for a gene and display all its information. Normally you can view some information about the gene on the plot through the tooltip, however some genes have alot of information so the search page was provided for this.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technical decisions
+* I used all the libraries requested by the exercise. I choose to add react router because the landing page was getting a
+bit long, and I wanted to separate the heatmap page from the landing page for clarity. I also added a search page because the tooltip
+on the plot was getting a bit long and couldn't show all information for some genes.
+* I decided to use Context API to manage the data of the application as it is now needed in the heatmap page and the search page.
+This will also prevent re-fetching of the data when the user navigates between pages.
+* I cached the dataset in IndexedDB to prevent re-fetching of the data when the user refreshes the page. I would not usually do this
+in production but rather prefer using libraries like useSWR to cache the data. I also expect the data to have been paginated
+from the backend so that the user does not have to fetch all 1000 genes at once. Given that the data is not paginated and does not change, I decided to cache it in IndexedDB.
+* I decided to paginate the data viewed on the plot because the plot was getting a bit crowded with all 1000 genes. I also decided to paginate the top level phenotype term and gene range filters because they are quite long and would not fit on the screen.

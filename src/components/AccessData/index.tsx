@@ -5,6 +5,7 @@ import { BsCardImage } from "react-icons/bs";
 import { BsFillFolderFill } from "react-icons/bs";
 import { ImArrowUpRight2 } from "react-icons/im";
 import { AiTwotoneApi } from "react-icons/ai";
+import { Bounce } from "react-awesome-reveal";
 import classes from "./index.module.scss";
 
 type Props = {};
@@ -22,7 +23,7 @@ const AccessData: React.FC<Props> = (props: Props) => {
           </p>
           <div className="row g-4">
             <div className="col-12 col-md-6 col-xl-3">
-              <div>
+              <Bounce delay={500} duration={1000} triggerOnce>
                 <div className={`${classes.data_section_card} card`}>
                   <div className="card-body d-flex justify-content-between flex-column">
                     <div>
@@ -56,10 +57,10 @@ const AccessData: React.FC<Props> = (props: Props) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Bounce>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <div>
+              <Bounce delay={500} duration={1100} triggerOnce>
                 <div className={`${classes.data_section_card} card`}>
                   <div className="card-body d-flex justify-content-between flex-column">
                     <div>
@@ -88,10 +89,10 @@ const AccessData: React.FC<Props> = (props: Props) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Bounce>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <div>
+              <Bounce delay={500} duration={1300} triggerOnce>
                 <div className={`${classes.data_section_card} card`}>
                   <div className="card-body d-flex justify-content-between flex-column">
                     <div>
@@ -122,10 +123,10 @@ const AccessData: React.FC<Props> = (props: Props) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Bounce>
             </div>
             <div className="col-12 col-md-6 col-xl-3">
-              <div>
+              <Bounce delay={500} duration={1400} triggerOnce>
                 <div className={`${classes.data_section_card} card`}>
                   <div className="card-body d-flex justify-content-between flex-column">
                     <div>
@@ -153,7 +154,7 @@ const AccessData: React.FC<Props> = (props: Props) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Bounce>
             </div>
           </div>
         </Container>
