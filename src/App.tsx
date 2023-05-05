@@ -1,13 +1,14 @@
 import React from 'react';
-import Routes from "./Routes";
+import AppRoutes from "./AppRoutes";
 import DataContextProvider from "./context/DataContextProvider";
 
 type Props = {}
 
 const App: React.FC<Props> = (props: Props) => {
+
     return (
         <DataContextProvider>
-            <Routes />
+            <AppRoutes />
         </DataContextProvider>
     );
 };

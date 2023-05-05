@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import Select from "react-select";
 import { DataContext, DataContextType } from "../context/DataContextProvider";
 import { PlotData, SelectData } from "../dataTypes";
 import classes from "../sass/pages/searchpage.module.scss";
+
 
 type Props = {};
 
@@ -39,7 +40,9 @@ const SearchPage: React.FC<Props> = () => {
               />
             </div>
           </div>
-          <div className={`${classes.search_page_col} col-12 col-md-2 mt-3 mt-md-0`}>
+          <div
+            className={`${classes.search_page_col} col-12 col-md-2 mt-3 mt-md-0`}
+          >
             <div className="h-100 d-flex align-items-end">
               <button
                 onClick={searchHandler}
@@ -68,38 +71,47 @@ const SearchPage: React.FC<Props> = () => {
                 <div key={row.top_level_mp_term_id} className="mb-3">
                   <h4 className={classes.search_page_top_term}>
                     Top Level Phenotype Term:{" "}
-                    <span style={{ textTransform: "capitalize" }}>{row.x}</span> ({row.top_level_mp_term_id})
+                    <span style={{ textTransform: "capitalize" }}>{row.x}</span>{" "}
+                    ({row.top_level_mp_term_id})
                   </h4>
-                  <h5 className={`${classes.search_page_phenotype_count} mb-3`}>Phenotype Count: {row.y === -10 ? "No Association" : row.y}</h5>
+                  <h5 className={`${classes.search_page_phenotype_count} mb-3`}>
+                    Significant associated phenotypes:{" "}
+                    {row.y === -10 ? "No Association" : row.y}
+                  </h5>
                   <div className="row">
                     <div className="col-12 col-md-6">
                       <div>
-                        <h5>Phenotype Systems</h5>
+                        <h5 className="fw-bold">Phenotype Systems</h5>
                         {row.procedures.length > 0 ? (
-                            row.procedures.map((procedure, index) => {
-                              return (
-                                  <div key={index}>
-                                    <p>{procedure}</p>
-                                  </div>
-                              );
-                            })
-                        ) : <p>No available procedures for this gene in this phenotype system</p>}
+                          row.procedures.map((procedure, index) => {
+                            return (
+                              <div key={index}>
+                                <p>{procedure}</p>
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <p>
+                            No available procedures for this gene in this
+                            phenotype system
+                          </p>
+                        )}
                       </div>
                     </div>
                     <div className="col-12 col-md-6">
                       <div>
-                        <h5>Other Phenotype Terms</h5>
-                        {
-                          row.phenotype_terms.length > 0 ? (
-                              row.phenotype_terms.map((term) => {
-                                  return (
-                                      <div key={term.mp_term_id}>
-                                        <p>{`${term.mp_term_name} (${term.mp_term_id})`}</p>
-                                      </div>
-                                  );
-                                })
-                          ) : (<p>No significant phenotype term</p>)
-                        }
+                        <h5 className="fw-bold">Other Phenotype Terms</h5>
+                        {row.phenotype_terms.length > 0 ? (
+                          row.phenotype_terms.map((term) => {
+                            return (
+                              <div key={term.mp_term_id}>
+                                <p>{`${term.mp_term_name} (${term.mp_term_id})`}</p>
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <p>No significant phenotype term</p>
+                        )}
                       </div>
                     </div>
                   </div>

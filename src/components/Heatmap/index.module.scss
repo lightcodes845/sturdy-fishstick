@@ -3,8 +3,10 @@
   width: 100%;
   padding: 1rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  overflow-x: auto;
   height: 55rem;
+  @include respondMax(sm){
+    overflow-x: auto;
+  }
   &_inner{
     height: 100%;
     @include respondMax(sm){

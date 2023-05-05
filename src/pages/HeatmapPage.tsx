@@ -22,6 +22,7 @@ function HeatmapPage() {
   const [geneRangePage, setGeneRangePage] = useState<number>(1);
   const [geneRangePerPage, setGeneRangePerPage] = useState<number>(25);
   const geneRangeRef = useRef<number>(0);
+  // const mainDiv = useRef<HTMLDivElement>(null);
 
   const paginate = (pageNumber: number) => {
     setPage(pageNumber);
@@ -30,6 +31,14 @@ function HeatmapPage() {
   const paginateGeneRange = (pageNumber: number) => {
     setGeneRangePage(pageNumber);
   };
+
+  // useEffect(() => {
+  //   mainDiv.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //       inline: "start",
+  //   });
+  // }, []);
 
   useEffect(() => {
     if (selectedGenes && selectedGenes.length > 0) {
@@ -87,94 +96,94 @@ function HeatmapPage() {
   }, [geneRange, rangeFilterData, geneRangePage, geneRangePerPage, fullData]);
 
   return (
-    <div className={"container w-100 h-100"} style={{ marginTop: "110px", minHeight: "40rem"  }}>
-      <h1 className="text-center my-3">IMPC Heatmap</h1>
-      {loading ? (
-        <div className="d-flex justify-content-center w-100">
-          <Spinner className="spinner" animation="border" variant="dark" />
-        </div>
-      ) : (
-        <>
-          <FilterControls
-            genes={genes}
-            disableGeneSelect={
-              !!(selectedPhenotypes && selectedPhenotypes.length > 0) ||
-              geneRange > 0
-            }
-            setSelectedGenes={setSelectedGenes}
-            selectedGenes={selectedGenes}
-            disablePhenotypeSelect={
-              !!(selectedGenes && selectedGenes.length > 0) || geneRange > 0
-            }
-            phenotypes={phenotypes}
-            setSelectedPhenotypes={setSelectedPhenotypes}
-            setGeneRange={setGeneRange}
-            geneRange={geneRange}
-            selectedPhenotypes={selectedPhenotypes}
-            disableGeneRange={
-              !!(selectedGenes && selectedGenes.length > 0) ||
-              !!(selectedPhenotypes && selectedPhenotypes.length > 0)
-            }
-          />
-          {fullData && <Heatmap data={plotData} />}
-          {(selectedGenes && selectedGenes.length > 0) || geneRange > 0
-            ? null
-            : fullData && (
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="me-3">
-                    <label htmlFor="elementsPerPage">Showing&nbsp;&nbsp;</label>
-                    <select
-                      name="elementsPerPage"
-                      id="elementsPerPage"
-                      onChange={(e) => {
-                        setElementsPerPage(parseInt(e.target.value));
-                        paginate(1);
-                      }}
-                    >
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                      <option value="100">100</option>
-                    </select>{" "}
-                    genes per page
-                  </div>
-                  <DataPagination
-                    elementsPerPage={elementsPerPage}
-                    totalElements={fullData.length}
-                    activePage={page}
-                    paginate={paginate}
-                  />
-                </div>
-              )}
-          {/*  For Gene Range */}
-          {geneRange > 0 ? (
-            <div className="d-flex align-items-center justify-content-center">
-              <div className="me-3">
-                <label htmlFor="geneRangePerPage">Showing&nbsp;&nbsp;</label>
-                <select
-                  name="geneRangePerPage"
-                  id="geneRangePerPage"
-                  onChange={(e) => {
-                    setGeneRangePerPage(parseInt(e.target.value));
-                    paginateGeneRange(1);
-                  }}
-                >
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>{" "}
-                genes per page
-              </div>
-              <DataPagination
-                elementsPerPage={geneRangePerPage}
-                totalElements={geneRangeFilterLevel.length}
-                activePage={geneRangePage}
-                paginate={paginateGeneRange}
-              />
+      <div className={"container w-100 h-100"} style={{ marginTop: "110px", minHeight: "40rem"  }}>
+        <h1 className="text-center my-3">IMPC Heatmap</h1>
+        {loading ? (
+            <div className="d-flex justify-content-center w-100">
+              <Spinner className="spinner" animation="border" variant="dark" />
             </div>
-          ) : null}
-        </>
-      )}
-    </div>
+        ) : (
+            <>
+              <FilterControls
+                  genes={genes}
+                  disableGeneSelect={
+                      !!(selectedPhenotypes && selectedPhenotypes.length > 0) ||
+                      geneRange > 0
+                  }
+                  setSelectedGenes={setSelectedGenes}
+                  selectedGenes={selectedGenes}
+                  disablePhenotypeSelect={
+                      !!(selectedGenes && selectedGenes.length > 0) || geneRange > 0
+                  }
+                  phenotypes={phenotypes}
+                  setSelectedPhenotypes={setSelectedPhenotypes}
+                  setGeneRange={setGeneRange}
+                  geneRange={geneRange}
+                  selectedPhenotypes={selectedPhenotypes}
+                  disableGeneRange={
+                      !!(selectedGenes && selectedGenes.length > 0) ||
+                      !!(selectedPhenotypes && selectedPhenotypes.length > 0)
+                  }
+              />
+              {fullData && <Heatmap data={plotData} />}
+              {(selectedGenes && selectedGenes.length > 0) || geneRange > 0
+                  ? null
+                  : fullData && (
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="me-3">
+                      <label htmlFor="elementsPerPage">Showing&nbsp;&nbsp;</label>
+                      <select
+                          name="elementsPerPage"
+                          id="elementsPerPage"
+                          onChange={(e) => {
+                            setElementsPerPage(parseInt(e.target.value));
+                            paginate(1);
+                          }}
+                      >
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>{" "}
+                      genes per page
+                    </div>
+                    <DataPagination
+                        elementsPerPage={elementsPerPage}
+                        totalElements={fullData.length}
+                        activePage={page}
+                        paginate={paginate}
+                    />
+                  </div>
+              )}
+              {/*  For Gene Range */}
+              {geneRange > 0 ? (
+                  <div className="d-flex align-items-center justify-content-center">
+                    <div className="me-3">
+                      <label htmlFor="geneRangePerPage">Showing&nbsp;&nbsp;</label>
+                      <select
+                          name="geneRangePerPage"
+                          id="geneRangePerPage"
+                          onChange={(e) => {
+                            setGeneRangePerPage(parseInt(e.target.value));
+                            paginateGeneRange(1);
+                          }}
+                      >
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>{" "}
+                      genes per page
+                    </div>
+                    <DataPagination
+                        elementsPerPage={geneRangePerPage}
+                        totalElements={geneRangeFilterLevel.length}
+                        activePage={geneRangePage}
+                        paginate={paginateGeneRange}
+                    />
+                  </div>
+              ) : null}
+            </>
+        )}
+      </div>
   );
 }
 

@@ -7,8 +7,8 @@ function capitalizeFirstLetter(text: string) {
 export const convertToPlotFormat = (data: Data[]) => {
   let result: {
     [key: string]: {
-      x: string;
-      y: number;
+      x: string; // top_level_mp_term_name
+      y: number; // phenotype_count
       marker_accession_id: string;
       top_level_mp_term_id: string;
       procedures: string[];
