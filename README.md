@@ -41,5 +41,4 @@ from the backend so that the user does not have to fetch all 1000 genes at once.
 * I decided to paginate the data viewed on the plot because the plot was getting a bit crowded with all 1000 genes. I also decided to paginate the top level phenotype term and top phenotype count filters because they are quite long and would not fit on the screen.
 
 ## Time spent on the project
-This project took me roughly 3days. I spent the first day reading the exercise, understanding the requirements and implementing the heatmap. I spent the second day
-implementing the filter controls and the landing page. I spent the third day implementing the search page and finishing touches.
+This project took me roughly 3days.
