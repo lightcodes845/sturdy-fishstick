@@ -12,7 +12,7 @@ type FullDataState = {
   error: string | null;
   genes: SelectData[];
   phenotypes: SelectData[];
-  rangeFilterData: RangeData[];
+  geneTotalPhenotypeCount: RangeData[];
 };
 
 type FullDataAction =  {
@@ -22,7 +22,7 @@ type FullDataAction =  {
     data?: PlotData[]
     genes?: SelectData[];
     phenotypes?: SelectData[];
-    rangeFilterData?: RangeData[];
+    geneTotalPhenotypeCount?: RangeData[];
   }
 };
 
@@ -31,7 +31,7 @@ export const INITIAL_STATE: FullDataState = {
   fullData: [],
     genes: [],
     phenotypes: [],
-  rangeFilterData: [],
+  geneTotalPhenotypeCount: [],
   error: null,
 };
 
@@ -53,7 +53,7 @@ const fullDataReducer = (state = INITIAL_STATE, action: FullDataAction) => {
         fullData: action.payload!.data!,
         genes: action.payload!.genes!,
         phenotypes: action.payload!.phenotypes!,
-        rangeFilterData: action.payload!.rangeFilterData!,
+        geneTotalPhenotypeCount: action.payload!.geneTotalPhenotypeCount!,
       };
     case ActionTypes.FETCH_FULL_DATA_FAILURE:
       return {

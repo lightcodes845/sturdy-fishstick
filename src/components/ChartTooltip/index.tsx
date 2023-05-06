@@ -3,8 +3,6 @@ import classes from "./index.module.scss";
 
 type Props = {
   serieId: string;
-  x: number;
-  y: number;
   data: {
     x: string;
     y: number;
@@ -15,9 +13,8 @@ type Props = {
   };
 };
 
-const ChartTooltip: React.FC<Props> = ({ serieId, data, x, y }) => {
+const ChartTooltip: React.FC<Props> = ({ serieId, data }) => {
   return (
-    // <TooltipWrapper anchor="center" position={[0, 0]}>
     <div className={`${classes.tooltip} card`}>
       <div className="card-body">
         <h5 className="card-title">{`${serieId}(${
@@ -34,7 +31,6 @@ const ChartTooltip: React.FC<Props> = ({ serieId, data, x, y }) => {
         {/*<p className="card-text">{data.y === 0 ? "No Association": data.y}</p>*/}
         <hr />
         <h6 className="card-subtitle">
-          {/*{`First ${data.procedures.length > 6 ? 6 : data.procedures.length} procedures`}*/}
           {"Procedures"}
         </h6>
         {data.procedures.length > 0 ? (
@@ -48,7 +44,6 @@ const ChartTooltip: React.FC<Props> = ({ serieId, data, x, y }) => {
         )}
         <hr />
         <h6 className="card-subtitle">
-          {/*{`First ${data.phenotype_terms.length > 6 ? 6 : data.phenotype_terms.length} phenotype terms`}*/}
           {"Phenotype terms"}
         </h6>
         {data.phenotype_terms.length > 0 ? (
@@ -70,13 +65,12 @@ const ChartTooltip: React.FC<Props> = ({ serieId, data, x, y }) => {
             <span className="card-text">
               This result data is truncated, please use '
               <span style={{ color: "#ed7b25" }}>Search</span>' link on the
-              navbar to view all details about gene.
+              navbar to view all details about this gene.
             </span>
           </>
         ) : null}
       </div>
     </div>
-    // </TooltipWrapper>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Zoom, Slide } from "react-awesome-reveal";
+import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import classes from "./index.module.scss";
 
@@ -26,6 +27,10 @@ const Hero: React.FC<Props> = (props: Props) => {
                       <p className={classes.hero_text_description}>
                         New age of phenotyping data for the world
                       </p>
+                    </div>
+                    <div>
+                      <Link to={"/heatmap"} className={`btn ${classes.hero_text_content_heatmap}`}>View Heatmap</Link>
+                      <Link to={"/search"} className={`btn ${classes.hero_text_content_search}`}>Search Gene</Link>
                     </div>
                   </div>
                 </Zoom>

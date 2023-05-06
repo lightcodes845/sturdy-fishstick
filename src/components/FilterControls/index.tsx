@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./index.module.scss";
 import Select from "react-select";
-import { SelectData } from "../../dataTypes";
 import { Form } from "react-bootstrap";
+import { SelectData } from "../../dataTypes";
+import classes from "./index.module.scss";
 
 type Props = {
   genes: SelectData[];
@@ -13,9 +13,9 @@ type Props = {
   setSelectedPhenotypes: (e: SelectData[]) => void;
   selectedPhenotypes: SelectData[] | null;
   selectedGenes: SelectData[] | null;
-  geneRange: number;
-  disableGeneRange: boolean;
-  setGeneRange: (e: number) => void;
+  genePhenotypeCountRange: number;
+  disableGenePhenotypeCountRange: boolean;
+  setGenePhenotypeCountRange: (e: number) => void;
 };
 
 const FilterControls: React.FC<Props> = ({
@@ -26,9 +26,9 @@ const FilterControls: React.FC<Props> = ({
   phenotypes,
   setSelectedPhenotypes,
   selectedPhenotypes,
-  geneRange,
-  disableGeneRange,
-  setGeneRange,
+  genePhenotypeCountRange,
+  disableGenePhenotypeCountRange,
+  setGenePhenotypeCountRange,
   selectedGenes
 }) => {
 
@@ -39,8 +39,8 @@ const FilterControls: React.FC<Props> = ({
     if(selectedPhenotypes && selectedPhenotypes.length > 0){
         setSelectedPhenotypes([])
     }
-    if(geneRange > 0){
-        setGeneRange(0)
+    if(genePhenotypeCountRange > 0){
+      setGenePhenotypeCountRange(0)
     }
   }
 
@@ -90,16 +90,16 @@ const FilterControls: React.FC<Props> = ({
         <div className="col-12 col-md-6">
           <div>
             <Form.Label>
-              Filter top {geneRange}% of the genes that have the highest
+              Filter top {genePhenotypeCountRange}% of the genes that have the highest
               phenotype count
             </Form.Label>
             <div className={"d-flex"}>
               <span>0%&nbsp;&nbsp;</span>
               <Form.Range
-                  disabled={disableGeneRange}
-                  value={geneRange}
+                  disabled={disableGenePhenotypeCountRange}
+                  value={genePhenotypeCountRange}
                   onChange={(e) => {
-                    setGeneRange(Number(e.target.value));
+                    setGenePhenotypeCountRange(Number(e.target.value));
                   }}
               />
                 <span>&nbsp;&nbsp;100%</span>

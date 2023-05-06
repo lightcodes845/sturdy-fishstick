@@ -58,8 +58,9 @@ export const convertToPlotFormat = (data: Data[]) => {
   // convert the phenotype set to an array of objects
   const pt = Array.from(phenotypeTerms);
   const ptIds = Array.from(phenotypeTermsIds);
-  const genes = []
-  const forRangeFilter = [];
+
+  const genes = [] // list of marker_symbols for genes select component
+  const geneTotalPhenotypeCount = []; // sum of phenotype counts for each gene
   // for each marker_symbol, add the missing top level phenotype terms and set the count to 0
   for (const marker_symbol in result) {
     const res = result[marker_symbol];
@@ -68,7 +69,7 @@ export const convertToPlotFormat = (data: Data[]) => {
       if (!element) {
         res.push({
           x: pt[i],
-          y: -10, // set the count to -10 for missing phenotype and for it to be distinguishable to 1 phenotype count in the heatmap
+          y: -10, // set the count to -10 for missing phenotype so that it is distinguishable to 1 phenotype count on the heatmap
           top_level_mp_term_id: ptIds[i],
           marker_accession_id: res[0].marker_accession_id,
           procedures: [],
@@ -89,7 +90,7 @@ export const convertToPlotFormat = (data: Data[]) => {
     });
 
     //create list of marker_symbols and their total phenotype count for range filter
-    forRangeFilter.push({
+    geneTotalPhenotypeCount.push({
       id: marker_symbol,
       value: res.map((d) => d.y).reduce((a, b) => {
         if(a === -10) a = 0;
@@ -98,14 +99,15 @@ export const convertToPlotFormat = (data: Data[]) => {
       }, 0),
     })
     //sort the list in descending order
-    forRangeFilter.sort((a, b) => b.value - a.value);
+    geneTotalPhenotypeCount.sort((a, b) => b.value - a.value);
+    
   }
 
   //convert phenotype terms into format required by phenotype select component
-  const pt2 = pt.map((d) => {
+  const pt2 = pt.map((phenotype_terms) => {
     return {
-      value: d,
-      label: capitalizeFirstLetter(d),
+      value: phenotype_terms,
+      label: capitalizeFirstLetter(phenotype_terms),
     };
   });
 
@@ -113,6 +115,34 @@ export const convertToPlotFormat = (data: Data[]) => {
     plotData,
     phenotypeTerms: pt2,
     genes,
-    forRangeFilter,
+    geneTotalPhenotypeCount,
   };
 };
+
+// throttle function to limit the number of times a function is called
+export function throttleFunc(func: () => void, limit: number): () => void {
+  let lastFunc: NodeJS.Timeout;
+  let lastRan: number;
+
+  return function() {
+    // @ts-ignore
+    const context: any = this;
+    const args = arguments;
+
+    clearTimeout(lastFunc);
+
+    const currentTime = Date.now();
+
+    if (!lastRan || currentTime - lastRan >= limit) {
+      // @ts-ignore
+      func.apply(context, args);
+      lastRan = currentTime;
+    } else {
+      lastFunc = setTimeout(function() {
+        // @ts-ignore
+        func.apply(context, args);
+        lastRan = Date.now();
+      }, limit - (currentTime - lastRan));
+    }
+  };
+}

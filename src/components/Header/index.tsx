@@ -1,11 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { throttleFunc} from "../../utilities";
 import classes from "./index.module.scss";
 
 type Props = {};
 
-const Header: React.FC<Props> = (props: Props) => {
+const Header: React.FC<Props> = () => {
+  const [colorChange, setColorChange] = useState(false);
+  useEffect(() => {
+    const changeNavbarColor = throttleFunc(() => {
+        if (document.body.scrollTop >= 80) {
+            setColorChange(true);
+        } else {
+            setColorChange(false);
+        }
+    }
+    , 500);
+    document.body.addEventListener("scroll", changeNavbarColor);
+
+    return () => {
+      document.body.removeEventListener("scroll", changeNavbarColor);
+    };
+  }, []);
 
   return (
     <Navbar
@@ -14,6 +31,7 @@ const Header: React.FC<Props> = (props: Props) => {
       expand="lg"
       id={"navbarId"}
       className={classes.navbar}
+      style={{ boxShadow: colorChange ? "0 3px 5px rgba(0,0,0,0.2)" : "" }}
     >
       <Container>
         <Navbar.Brand>

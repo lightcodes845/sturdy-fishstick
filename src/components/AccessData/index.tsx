@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { BsFillBarChartLineFill } from "react-icons/bs";
 import { BsCardImage } from "react-icons/bs";
 import { BsFillFolderFill } from "react-icons/bs";
-import { ImArrowUpRight2 } from "react-icons/im";
+import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import { AiTwotoneApi } from "react-icons/ai";
 import { Bounce } from "react-awesome-reveal";
 import classes from "./index.module.scss";
@@ -52,7 +52,7 @@ const AccessData: React.FC<Props> = (props: Props) => {
                         rel="noreferrer"
                         className={`${classes.data_section_card_link}`}
                       >
-                        View More <ImArrowUpRight2 />
+                        View More <BsFillArrowUpRightCircleFill />
                       </a>
                     </div>
                   </div>
@@ -84,7 +84,7 @@ const AccessData: React.FC<Props> = (props: Props) => {
                         rel="noreferrer"
                         className={classes.data_section_card_link}
                       >
-                        View More <ImArrowUpRight2 />
+                        View More <BsFillArrowUpRightCircleFill />
                       </a>
                     </div>
                   </div>
@@ -118,7 +118,7 @@ const AccessData: React.FC<Props> = (props: Props) => {
                         rel="noreferrer"
                         className={classes.data_section_card_link}
                       >
-                        View More <ImArrowUpRight2 />
+                        View More <BsFillArrowUpRightCircleFill />
                       </a>
                     </div>
                   </div>
@@ -149,7 +149,7 @@ const AccessData: React.FC<Props> = (props: Props) => {
                           rel="noreferrer"
                           className={classes.data_section_card_link}
                       >
-                        View More <ImArrowUpRight2 />
+                        View More <BsFillArrowUpRightCircleFill />
                       </a>
                     </div>
                   </div>

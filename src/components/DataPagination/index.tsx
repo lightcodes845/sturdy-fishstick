@@ -1,7 +1,7 @@
-import classes from "./index.module.scss";
-
 import React, { useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
+import classes from "./index.module.scss";
+
 
 type Props = {
   elementsPerPage: number;

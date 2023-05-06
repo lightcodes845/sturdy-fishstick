@@ -10,7 +10,7 @@ type Props = {};
 
 const AppRoutes: React.FC<Props> = () => {
   return (
-    <div id={"mainDiv"}>
+    <div>
       <BrowserRouter>
         <Header />
         <Routes>

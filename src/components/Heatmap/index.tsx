@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./index.module.scss";
 import { ResponsiveHeatMapCanvas } from "@nivo/heatmap";
 import { PlotData } from "../../dataTypes";
 import ChartTooltip from "../ChartTooltip";
+import classes from "./index.module.scss";
 
 type Props = {
   data: PlotData[];
@@ -14,11 +14,39 @@ const Heatmap: React.FC<Props> = ({ data }) => {
       <div className={classes.main_plot_inner}>
         <ResponsiveHeatMapCanvas
             data={data}
-            margin={{ top: 100, right: 90, bottom: 60, left: 90 }}
+            margin={{ top: 105, right: 90, bottom: 50, left: 90 }}
             valueFormat=">-.2s"
             theme={
               {
                 "fontSize": 12,
+                  "axis": {
+
+                    "legend": {
+                        "text": {
+                            "fontSize": 25,
+                            "fill": "#333333"
+                        }
+                    },
+                  },
+                  "legends": {
+                      "title": {
+                          "text": {
+                              "fontSize": 18,
+                              "fill": "#333333"
+                          }
+                      },
+                      "text": {
+                          "fontSize": 18,
+                          "fill": "#333333"
+                      },
+                      "ticks": {
+                          "line": {},
+                          "text": {
+                              "fontSize": 12,
+                              "fill": "#333333"
+                          }
+                      }
+                  },
               }
             }
             axisTop={{
@@ -78,10 +106,9 @@ const Heatmap: React.FC<Props> = ({ data }) => {
                 titleOffset: 4,
               },
             ]}
-            tooltip={({ cell: { serieId,x, y, data } }) => {
+            tooltip={({ cell: { serieId, data } }) => {
               return (
-                  <ChartTooltip  data={data} serieId={serieId} x={x} y={y}/>
-                  // <div>123</div>
+                  <ChartTooltip  data={data} serieId={serieId} />
               );
             }}
         />

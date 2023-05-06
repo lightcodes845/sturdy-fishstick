@@ -13,7 +13,7 @@ export type DataContextType = {
   error: string | null;
   genes: SelectData[];
   phenotypes: SelectData[];
-  rangeFilterData: RangeData[];
+  geneTotalPhenotypeCount: RangeData[];
 };
 
 type Props = {
@@ -24,7 +24,7 @@ export const DataContext = createContext<DataContextType | null>(null);
 
 const DataContextProvider: React.FC<Props> = ({ children }) => {
   const [
-    { fullData, loading, genes, phenotypes, rangeFilterData, error },
+    { fullData, loading, genes, phenotypes, geneTotalPhenotypeCount, error },
     dispatch,
   ] = useReducer(fullDataReducer, INITIAL_STATE);
 
@@ -42,7 +42,7 @@ const DataContextProvider: React.FC<Props> = ({ children }) => {
             data: result.plotData,
             genes: result.genes,
             phenotypes: result.phenotypeTerms,
-            rangeFilterData: result.forRangeFilter,
+            geneTotalPhenotypeCount: result.geneTotalPhenotypeCount,
           },
         });
       } else {
@@ -59,7 +59,7 @@ const DataContextProvider: React.FC<Props> = ({ children }) => {
               data: result.plotData,
               genes: result.genes,
               phenotypes: result.phenotypeTerms,
-              rangeFilterData: result.forRangeFilter,
+              geneTotalPhenotypeCount: result.geneTotalPhenotypeCount,
             },
           });
         } catch (e: any) {
@@ -74,7 +74,7 @@ const DataContextProvider: React.FC<Props> = ({ children }) => {
   }, []);
 
   const value = {
-    fullData, loading, genes, phenotypes, rangeFilterData, error
+    fullData, loading, genes, phenotypes, geneTotalPhenotypeCount, error
   };
 
   return <DataContext.Provider value={value}> {children} </DataContext.Provider>;

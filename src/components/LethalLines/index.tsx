@@ -3,7 +3,7 @@ import classes from "./index.module.scss";
 
 type Props = {};
 
-const LethalLines: React.FC<Props> = (props: Props) => {
+const LethalLines: React.FC<Props> = () => {
   return (
     <section className={classes.lethal_section}>
       <div>
@@ -60,7 +60,7 @@ const LethalLines: React.FC<Props> = (props: Props) => {
                     alt="Embryo"
                   />
                   <figcaption className="text-center">
-                    Image of a Mouse Embryo after 4 week
+                    Image of a Mouse Embryo after 4 weeks
                   </figcaption>
                 </figure>
               </div>
