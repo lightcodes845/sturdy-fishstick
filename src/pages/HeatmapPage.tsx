@@ -23,10 +23,22 @@ function HeatmapPage() {
     SelectData[] | null
   >(null);
   const [selectedGenes, setSelectedGenes] = useState<SelectData[] | null>(null);
-  const [genePhenotypeCountRange, setGenePhenotypeCountRange] = useState<number>(0);
-  const [genePhenotypeCountRangeFilterTotal, setGenePhenotypeCountRangeFilterTotal] = useState<number>(0);
-  const [genePhenotypeCountRangePage, setGenePhenotypeCountRangePage] = useState<number>(1);
-  const [genePhenotypeCountRangePerPage, setGenePhenotypeCountRangePerPage] = useState<number>(25);
+  const [
+    genePhenotypeCountRange,
+    setGenePhenotypeCountRange,
+  ] = useState<number>(0);
+  const [
+    genePhenotypeCountRangeFilterTotal,
+    setGenePhenotypeCountRangeFilterTotal,
+  ] = useState<number>(0);
+  const [
+    genePhenotypeCountRangePage,
+    setGenePhenotypeCountRangePage,
+  ] = useState<number>(1);
+  const [
+    genePhenotypeCountRangePerPage,
+    setGenePhenotypeCountRangePerPage,
+  ] = useState<number>(25);
   const genePhenotypeCountRangeRef = useRef<number>(0);
 
   const paginate = (pageNumber: number) => {
@@ -39,7 +51,7 @@ function HeatmapPage() {
 
   useEffect(() => {
     document.body.scrollTo({ top: 0, behavior: "smooth" });
-  }, [])
+  }, []);
 
   useEffect(() => {
     //set plotData based on selectedGenes
@@ -55,7 +67,9 @@ function HeatmapPage() {
       const selectedData = fullData.map((gene) => {
         //find intersection of selectedPhenotypes and top level phenotypes
         const filteredData = gene.data.filter((top_level_phenotype) =>
-          selectedPhenotypes.some((phenotype) => phenotype.value === top_level_phenotype.x)
+          selectedPhenotypes.some(
+            (phenotype) => phenotype.value === top_level_phenotype.x
+          )
         );
         return { ...gene, data: filteredData };
       });
@@ -106,7 +120,13 @@ function HeatmapPage() {
       );
     }
     //  eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genePhenotypeCountRange, geneTotalPhenotypeCount, genePhenotypeCountRangePage, genePhenotypeCountRangePerPage, fullData]);
+  }, [
+    genePhenotypeCountRange,
+    geneTotalPhenotypeCount,
+    genePhenotypeCountRangePage,
+    genePhenotypeCountRangePerPage,
+    fullData,
+  ]);
 
   return (
     <div
@@ -139,7 +159,8 @@ function HeatmapPage() {
             setSelectedGenes={setSelectedGenes}
             selectedGenes={selectedGenes}
             disablePhenotypeSelect={
-              !!(selectedGenes && selectedGenes.length > 0) || genePhenotypeCountRange > 0
+              !!(selectedGenes && selectedGenes.length > 0) ||
+              genePhenotypeCountRange > 0
             }
             phenotypes={phenotypes}
             setSelectedPhenotypes={setSelectedPhenotypes}
@@ -151,6 +172,14 @@ function HeatmapPage() {
               !!(selectedPhenotypes && selectedPhenotypes.length > 0)
             }
           />
+          {
+            //  For Gene Range
+            genePhenotypeCountRange > 0 && (
+              <h3 className="text-center">
+                Showing top {genePhenotypeCountRange}% of genes based on phenotype count
+              </h3>
+            )
+          }
           <Heatmap data={plotData} />
           {(selectedGenes && selectedGenes.length > 0) ||
           genePhenotypeCountRange > 0 ? null : (
