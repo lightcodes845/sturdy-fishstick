@@ -92,7 +92,7 @@ const SearchPage: React.FC<Props> = () => {
                 </h3>
                 {searchResult.data.map((row) => {
                   return (
-                    <div key={row.top_level_mp_term_id} className="mb-3">
+                    <div key={row.top_level_mp_term_id} className="mb-5">
                       <h4 className={classes.search_page_top_term}>
                         Top Level Phenotype Term:{" "}
                         <span style={{ textTransform: "capitalize" }}>

@@ -18,11 +18,11 @@
       @include respondMax(md){
         align-items: center;
       }
-      @include respondMax(phone-land){
-        position: absolute;
-        top: -15%;
-        left: 10%;
-      }
+      //@include respondMax(phone-land){
+      //  position: absolute;
+      //  top: -15%;
+      //  left: 10%;
+      //}
 
       h1{
         font-size: 3.5rem;
